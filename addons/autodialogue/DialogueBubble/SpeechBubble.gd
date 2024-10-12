@@ -12,7 +12,7 @@ func _process(delta: float) -> void:
 		letterTimer.is_stopped() and
 		currentLetterIdx < bubbleText.length()
 	):
-		letterTimer.start(0.1)
+		letterTimer.start(FindLetterTiming(bubbleText[currentLetterIdx]))
 		%RichTextLabel.append_text(bubbleText[currentLetterIdx])
 		
 		currentLetterIdx += 1
@@ -48,3 +48,16 @@ func SetMinimumBoxSize():
 	
 	self.custom_minimum_size.x = size.x + 16
 	self.custom_minimum_size.y = x.split("\n").size() * size.y + (16)
+
+func FindLetterTiming(char: String) -> float:
+	var charSpeed : float
+	
+	match char:
+		",",".","?","!":
+			charSpeed = AutoDialogueGlobal.letterSpeedDict[(AutoDialogueGlobal.CHAR_DISPLAY_SPEED.PUNCTUATION)]
+		" ":
+			charSpeed = AutoDialogueGlobal.letterSpeedDict[(AutoDialogueGlobal.CHAR_DISPLAY_SPEED.SPACE)]
+		_:
+			charSpeed = AutoDialogueGlobal.letterSpeedDict[(AutoDialogueGlobal.CHAR_DISPLAY_SPEED.DEFAULT)]
+	
+	return charSpeed

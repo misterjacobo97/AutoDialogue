@@ -1,13 +1,12 @@
 extends Node
 class_name AutoDialogue
 
-## For the management of game dialogue, to be used as Autoload and 
-## called upon when wanting to display any type of dialogue.
+## For the management of game dialogue, using the powerful addone 'EzDialogue' by Dev Ezra
 
 enum CHAR_DISPLAY_SPEED { ## enum for accessing the type of chararacter in a text
 	DEFAULT, ## any letter
-	SPACE, ## special characters like !#%
-	PUNCTUATION ## characters like ,.;
+	SPACE,
+	PUNCTUATION ## characters like ,.!?
 }
 
 var letterSpeedDict := {
@@ -23,9 +22,7 @@ signal OptionSelected(questionEnum: int, questionText: String, optionEnum: Globa
 
 var dialogueActive := false
 
-#@onready var dialogueWindow : DialogueWindow = $DialogueWindow
 @onready var dialogueSpeechBubbleWithChoices := preload("res://addons/autodialogue/DialogueBubble/DialogueSpeechBubbleWithChoices.tscn")
-
 @onready var innactiveOptions : Array[GlobalEnumBus.DIALOGUE_OPTIONS] = []
 
 func _input(event: InputEvent) -> void:
@@ -33,8 +30,8 @@ func _input(event: InputEvent) -> void:
 		if event.pressed:
 			DialogueAdvanced.emit()
 
-
-## To show the dialogue options node.
+## To show the dialogue bubble.
+## The user should pass a bubble marker to choose the position of the bubble.
 func TriggerDialogueOptions(dialogueJson: JSON, _parentRef: Node2D, tailMarker: Marker2D, bubbleMarker: Marker2D = null):
 	dialogueActive = true
 	
@@ -46,12 +43,11 @@ func TriggerDialogueOptions(dialogueJson: JSON, _parentRef: Node2D, tailMarker: 
 	
 	if bubbleMarker:
 		newChoiceBubble.bubbleMarkerRef = bubbleMarker
-	#
-	#else:
-		#dialogueWindow.add_child(newChoiceBubble)
 	
 	newChoiceBubble.InitialiseDialogue(dialogueJson, _parentRef)
 
-## Resets the dialogue system and hides the DialogueWindow node
 func TriggerDialogueFinished():
 	dialogueActive = false
+
+func TransitionCamera():
+	pass

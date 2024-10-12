@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://c23vngwrnd652"]
+
+[ext_resource type="Script" path="res://addons/autodialogue/DialogueBubble/SpeechBubble.gd" id="1_6cse5"]
+[ext_resource type="Texture2D" uid="uid://bopk5mmhunecu" path="res://addons/autodialogue/Assets/SpeechBubble.png" id="2_2ogju"]
+
+[node name="DialogueBubble" type="PanelContainer" node_paths=PackedStringArray("letterTimer")]
+physics_interpolation_mode = 1
+custom_minimum_size = Vector2(100, 40)
+script = ExtResource("1_6cse5")
+letterTimer = NodePath("LetterTimer")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_2ogju")
+region_rect = Rect2(0.05723, 0.182793, 15.8859, 15.8859)
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect/CenterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "Test"
+fit_content = true
+autowrap_mode = 0
+
+[node name="LetterTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true

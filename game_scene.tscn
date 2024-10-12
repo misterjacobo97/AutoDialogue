@@ -11,7 +11,9 @@ size = Vector2(118, 120)
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_5ewdg")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="MainCamera2D" type="Camera2D" parent="."]
+
+[node name="NewCamera2D" type="Camera2D" parent="."]
 
 [node name="Player" type="Node2D" parent="."]
 script = ExtResource("3_5slug")
