@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dh61a631jg1qr"]
 
-[ext_resource type="Script" path="res://DialogueSystem/DialogueBubble/choice_button.gd" id="1_ypc13"]
-[ext_resource type="Texture2D" uid="uid://bopk5mmhunecu" path="res://DialogueSystem/Assets/SpeechBubble.png" id="2_ctw6b"]
+[ext_resource type="Script" path="res://addons/autodialogue/DialogueBubble/choice_button.gd" id="1_ypc13"]
+[ext_resource type="Texture2D" uid="uid://bopk5mmhunecu" path="res://addons/autodialogue/Assets/SpeechBubble.png" id="2_ctw6b"]
 
 [node name="ChoiceButton" type="Button"]
 offset_right = 8.0

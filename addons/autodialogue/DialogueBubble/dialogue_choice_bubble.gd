@@ -6,14 +6,14 @@ var parentRef: Node2D
 var tailMarkerRef : Marker2D
 var bubbleMarkerRef : Marker2D
  
-@onready var choiceButton := preload("res://DialogueSystem/DialogueBubble/ChoiceButton.tscn")
+@onready var choiceButton := preload("res://addons/autodialogue/DialogueBubble/ChoiceButton.tscn")
 var choiceButtonArr : Array[ChoiceButton] = []
 
 @export var SIE : SemiImplicitEuler
 @export var bubbleSpawnSpeed := 0.05
 
 func _ready() -> void:
-	DialogueSystem.DialogueAdvanced.connect(_OnDialogueAdvanced)
+	AutoDialogueGlobal.DialogueAdvanced.connect(_OnDialogueAdvanced)
 	
 	## for the wobble animation when text changes
 	SIE.SecondOrderDynamics(tailMarkerRef.global_position)#(get_parent() as Marker2D).global_position)
@@ -101,5 +101,5 @@ func _on_ez_dialogue_custom_signal_received(value: Variant) -> void:
 		
 
 func _on_ez_dialogue_end_of_dialogue_reached() -> void:
-	DialogueSystem.TriggerDialogueFinished()
+	AutoDialogueGlobal.TriggerDialogueFinished()
 	queue_free()

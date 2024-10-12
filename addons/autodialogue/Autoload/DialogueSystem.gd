@@ -1,5 +1,5 @@
 extends CanvasLayer
-class_name DialogueSystemClass
+class_name AutoDialogue
 
 ## For the management of game dialogue, to be used as Autoload and 
 ## called upon when wanting to display any type of dialogue.
@@ -23,34 +23,39 @@ signal OptionSelected(questionEnum: int, questionText: String, optionEnum: Globa
 
 var dialogueActive := false
 
-@onready var dialogueWindow : DialogueWindow = $DialogueWindow
-@onready var dialogueSpeechBubbleWithChoices := preload("res://DialogueSystem/DialogueBubble/DialogueSpeechBubbleWithChoices.tscn")
+#@onready var dialogueWindow : DialogueWindow = $DialogueWindow
+@onready var dialogueSpeechBubbleWithChoices := preload("res://addons/autodialogue/DialogueBubble/DialogueSpeechBubbleWithChoices.tscn")
 
 @onready var innactiveOptions : Array[GlobalEnumBus.DIALOGUE_OPTIONS] = []
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.pressed:
+			DialogueAdvanced.emit()
 
 func _ready() -> void:
 	%DialogueWindow.hide()
 	
-	%DialogueWindow.PlayerInput.connect(func(event):
-		DialogueAdvanced.emit()
-	)
+	#%DialogueWindow.PlayerInput.connect(func(event):
+		#DialogueAdvanced.emit()
+	#)
 
 ## To show the dialogue options node.
-func TriggerDialogueOptions(dialogueJson: JSON, _parentRef: Node2D, tailMarker: Marker2D = null, bubbleMarker: Marker2D = null):
+func TriggerDialogueOptions(dialogueJson: JSON, _parentRef: Node2D, tailMarker: Marker2D, bubbleMarker: Marker2D = null):
 	dialogueActive = true
 	%DialogueWindow.show()
 	
 	var newChoiceBubble = dialogueSpeechBubbleWithChoices.instantiate() as DialogueSpeechBubbleWithChoices
 	newChoiceBubble.parentRef = _parentRef
 	
-	if tailMarker:
-		newChoiceBubble.tailMarkerRef = tailMarker
-		tailMarker.add_child(newChoiceBubble)
+	newChoiceBubble.tailMarkerRef = tailMarker
+	tailMarker.add_child(newChoiceBubble)
+	
 	if bubbleMarker:
 		newChoiceBubble.bubbleMarkerRef = bubbleMarker
-	
-	else:
-		dialogueWindow.add_child(newChoiceBubble)
+	#
+	#else:
+		#dialogueWindow.add_child(newChoiceBubble)
 	
 	newChoiceBubble.InitialiseDialogue(dialogueJson, _parentRef)
 

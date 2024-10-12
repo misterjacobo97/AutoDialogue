@@ -20,7 +20,7 @@ var state : Dictionary = {
 	
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if not DialogueSystem.dialogueActive and event is InputEventMouseButton:
+	if not AutoDialogueGlobal.dialogueActive and event is InputEventMouseButton:
 		if event.is_pressed():
-			DialogueSystem.TriggerDialogueOptions(dialogueJson, self, %TailMarker, %BubbleMarker)
+			AutoDialogueGlobal.TriggerDialogueOptions(dialogueJson, self, %TailMarker, %BubbleMarker)
 		

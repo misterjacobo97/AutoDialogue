@@ -1,6 +1,6 @@
 [
 	{
-		"commands_raw": "you have a choice\n\n?> yes -> firstChoice\n\n$if !show_all_choices{\n    ?> no -> secondChoice\n}\n$else {\n    ?> Show 2 -> showTwoChoices\n}\n\n?> exit",
+		"commands_raw": "you have a choice\n\n?> yes -> firstChoice\n\n$if show_all_choices{\n    ?> no -> secondChoice\n}\n$else {\n    ?> Show 2 -> showTwoChoices\n}\n\n?> exit",
 		"gnode_name": "start",
 		"id": 0,
 		"name": "start",

@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://b6y62gts8n8qk"
-path="res://.godot/imported/ConnectionIii-Rj3W.otf-b3a04f10e3c19f0fe2a7288342e06d3f.fontdata"
+path="res://.godot/imported/ConnectionIii-Rj3W.otf-0ef441e651568a8f7a3292e7818a447a.fontdata"
 
 [deps]
 
-source_file="res://Fonts/ConnectionIii-Rj3W.otf"
-dest_files=["res://.godot/imported/ConnectionIii-Rj3W.otf-b3a04f10e3c19f0fe2a7288342e06d3f.fontdata"]
+source_file="res://addons/autodialogue/Fonts/ConnectionIii-Rj3W.otf"
+dest_files=["res://.godot/imported/ConnectionIii-Rj3W.otf-0ef441e651568a8f7a3292e7818a447a.fontdata"]
 
 [params]
 

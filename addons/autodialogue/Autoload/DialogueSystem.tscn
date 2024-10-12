@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dfybpsy7www1"]
 
-[ext_resource type="Script" path="res://DialogueSystem/Autoload/DialogueSystem.gd" id="1_hrru2"]
-[ext_resource type="PackedScene" uid="uid://bqgstc2a7cspw" path="res://DialogueSystem/Autoload/DialogueWindow.tscn" id="2_x23b7"]
+[ext_resource type="Script" path="res://addons/autodialogue/Autoload/DialogueSystem.gd" id="1_hrru2"]
+[ext_resource type="PackedScene" uid="uid://bqgstc2a7cspw" path="res://addons/autodialogue/Autoload/DialogueWindow.tscn" id="2_x23b7"]
 
 [node name="DialogueSystem" type="CanvasLayer"]
 layer = 2

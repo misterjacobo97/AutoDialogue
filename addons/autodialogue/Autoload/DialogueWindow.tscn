@@ -1,6 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqgstc2a7cspw"]
+[gd_scene load_steps=2 format=3 uid="uid://chrbdjtmb7hen"]
 
-[ext_resource type="Script" path="res://DialogueSystem/Autoload/dialogue_window.gd" id="1_306pg"]
+[sub_resource type="GDScript" id="GDScript_ascj0"]
+script/source = "extends Control
+class_name DialogueWindow
+
+## this is used by the DialogueSystem Global to capture mouse input while dialogue is active
+## might not need it though
+
+signal PlayerInput(input: InputEvent)
+
+@onready var questionContainer: CenterContainer = %QuestionContainer
+@onready var optionsContainer = %OptionsContainer
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.pressed:
+			PlayerInput.emit(event)
+"
 
 [node name="DialogueWindow" type="Control"]
 layout_mode = 3
@@ -11,7 +27,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("1_306pg")
+script = SubResource("GDScript_ascj0")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
