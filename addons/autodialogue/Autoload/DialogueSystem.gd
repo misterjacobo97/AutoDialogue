@@ -15,15 +15,18 @@ var letterSpeedDict := {
 	CHAR_DISPLAY_SPEED.PUNCTUATION: 0.1
 }
 
-signal DialogueUpdated ## for when current dialogue is finsihed changed 
-
 signal DialogueAdvanced
 signal OptionSelected(questionEnum: int, questionText: String, optionEnum: GlobalEnumBus.DIALOGUE_OPTIONS, optionText: String )
+
+signal DialogueFinished
 
 var dialogueActive := false
 
 @onready var dialogueSpeechBubbleWithChoices := preload("res://addons/autodialogue/DialogueBubble/DialogueSpeechBubbleWithChoices.tscn")
 @onready var innactiveOptions : Array[GlobalEnumBus.DIALOGUE_OPTIONS] = []
+
+var cameraTween : Tween
+var mainCameraRef : Camera2D = null
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -48,6 +51,30 @@ func TriggerDialogueOptions(dialogueJson: JSON, _parentRef: Node2D, tailMarker: 
 
 func TriggerDialogueFinished():
 	dialogueActive = false
+	if mainCameraRef:
+		TransitionCamera(mainCameraRef)
+	
+	DialogueFinished.emit()
 
-func TransitionCamera():
-	pass
+## A way to transition a Camera2D to the position of another one when dialogue is triggered
+func TransitionCamera(newCamera: Camera2D, mainCamera: Camera2D = null):
+	if mainCamera:
+		mainCameraRef = mainCamera
+		
+		%TransitionCamera2D.global_position = mainCamera.global_position
+		%TransitionCamera2D.scale = mainCamera.scale
+		%TransitionCamera2D.zoom = mainCamera.zoom
+	
+	%TransitionCamera2D.make_current()
+	
+	if cameraTween and cameraTween.is_running():
+		cameraTween.kill()
+	
+	cameraTween = create_tween().set_parallel(true).set_ease(Tween.EASE_IN)
+	
+	cameraTween.tween_property(%TransitionCamera2D, "global_position", newCamera.global_position, 0.8).from_current()
+	cameraTween.tween_property(%TransitionCamera2D, "zoom", newCamera.zoom, 0.8).from_current()
+	cameraTween.tween_property(%TransitionCamera2D, "rotation", newCamera.rotation, 0.8).from_current()
+	
+	await cameraTween.finished
+	newCamera.make_current()

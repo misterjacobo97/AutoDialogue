@@ -4,3 +4,6 @@
 
 [node name="DialogueSystem" type="Node"]
 script = ExtResource("1_hrru2")
+
+[node name="TransitionCamera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
