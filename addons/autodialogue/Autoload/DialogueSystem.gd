@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Node
 class_name AutoDialogue
 
 ## For the management of game dialogue, to be used as Autoload and 
@@ -33,17 +33,10 @@ func _input(event: InputEvent) -> void:
 		if event.pressed:
 			DialogueAdvanced.emit()
 
-func _ready() -> void:
-	%DialogueWindow.hide()
-	
-	#%DialogueWindow.PlayerInput.connect(func(event):
-		#DialogueAdvanced.emit()
-	#)
 
 ## To show the dialogue options node.
 func TriggerDialogueOptions(dialogueJson: JSON, _parentRef: Node2D, tailMarker: Marker2D, bubbleMarker: Marker2D = null):
 	dialogueActive = true
-	%DialogueWindow.show()
 	
 	var newChoiceBubble = dialogueSpeechBubbleWithChoices.instantiate() as DialogueSpeechBubbleWithChoices
 	newChoiceBubble.parentRef = _parentRef
@@ -62,4 +55,3 @@ func TriggerDialogueOptions(dialogueJson: JSON, _parentRef: Node2D, tailMarker: 
 ## Resets the dialogue system and hides the DialogueWindow node
 func TriggerDialogueFinished():
 	dialogueActive = false
-	%DialogueWindow.hide()

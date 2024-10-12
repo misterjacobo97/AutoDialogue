@@ -28,6 +28,9 @@ func _enter_tree() -> void:
 	add_autoload_singleton("AutoDialogueGlobal", "res://addons/autodialogue/Autoload/DialogueSystem.tscn")
 
 func _exit_tree() -> void:
+	## MAIN PLUGIN
+	remove_autoload_singleton("AutoDialogueGlobal")
+	
 	## EZ DIALOGUE
 	remove_custom_type(DIALOGUE_NODE_NAME)
 	if main_panel_instance:

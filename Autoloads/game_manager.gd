@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var innactiveOptions : Array[GlobalEnumBus.DIALOGUE_OPTIONS] = [1]
+#@onready var innactiveOptions : Array[GlobalEnumBus.DIALOGUE_OPTIONS] = [1]
 #@onready var dialogue_window: DialogueWindow = null:
 	#set(value):
 		#dialogue_window = value
