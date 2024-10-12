@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://sxx3ft4s50up"]
+
+[node name="DialgueLabel" type="RichTextLabel"]
+bbcode_enabled = true

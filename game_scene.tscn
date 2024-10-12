@@ -1,0 +1,92 @@
+[gd_scene load_steps=6 format=3 uid="uid://cucdq8063hn7p"]
+
+[ext_resource type="Script" path="res://game_scene.gd" id="1_5ewdg"]
+[ext_resource type="JSON" path="res://DialogueSystem/testData.json" id="3_3wg67"]
+[ext_resource type="Script" path="res://player.gd" id="3_5slug"]
+[ext_resource type="Texture2D" uid="uid://cryxme4ia2pwc" path="res://icon.svg" id="4_hrna1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l3k1o"]
+size = Vector2(118, 120)
+
+[node name="GameScene" type="Node2D"]
+script = ExtResource("1_5ewdg")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Player" type="Node2D" parent="."]
+script = ExtResource("3_5slug")
+dialogueJson = ExtResource("3_3wg67")
+
+[node name="DialogueBubbleMarkers" type="Node2D" parent="Player"]
+
+[node name="TailMarker" type="Marker2D" parent="Player/DialogueBubbleMarkers"]
+unique_name_in_owner = true
+position = Vector2(0, -65)
+
+[node name="BubbleMarker" type="Marker2D" parent="Player/DialogueBubbleMarkers"]
+unique_name_in_owner = true
+position = Vector2(84, -214)
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("4_hrna1")
+
+[node name="Area2D" type="Area2D" parent="Player"]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
+shape = SubResource("RectangleShape2D_l3k1o")
+
+[node name="Control" type="Control" parent="Player"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 108.0
+offset_top = -127.0
+offset_right = 148.0
+offset_bottom = -87.0
+
+[node name="Button1" type="Button" parent="Player/Control"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -27.0
+offset_top = 1.0
+offset_right = 117.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Hello World"
+
+[node name="Button2" type="Button" parent="Player/Control"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -24.0
+offset_top = 49.0
+offset_right = 248.0
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "pleased to meet you"
+
+[node name="Button3" type="Button" parent="Player/Control"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = 99.0
+offset_right = 204.0
+offset_bottom = 99.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "What some candy?"
+
+[connection signal="input_event" from="Player/Area2D" to="Player" method="_on_area_2d_input_event"]

@@ -1,0 +1,44 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="dialogueSystem"
+config/version="0.1.0"
+run/main_scene="res://game_scene.tscn"
+config/features=PackedStringArray("4.3", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+GlobalEnumBus="*res://Autoloads/GlobalEnumBus.gd"
+GameManager="*res://Autoloads/game_manager.gd"
+DialogueSystem="*res://DialogueSystem/Autoload/DialogueSystem.tscn"
+
+[display]
+
+window/size/always_on_top=true
+
+[editor]
+
+naming/scene_name_casing=1
+naming/script_name_casing=2
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/ez_dialogue/plugin.cfg")
+
+[gui]
+
+theme/custom_font="res://Fonts/PressStart2P-vaV7.ttf"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

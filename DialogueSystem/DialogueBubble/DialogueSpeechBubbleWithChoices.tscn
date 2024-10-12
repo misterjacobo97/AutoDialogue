@@ -1,0 +1,110 @@
+[gd_scene load_steps=9 format=3 uid="uid://cuh4whmm8dcw5"]
+
+[ext_resource type="Script" path="res://DialogueSystem/DialogueBubble/dialogue_choice_bubble.gd" id="1_nsxon"]
+[ext_resource type="Script" path="res://addons/ez_dialogue/ez_dialogue_node.gd" id="2_r2vnx"]
+[ext_resource type="JSON" path="res://DialogueSystem/testData.json" id="2_s7c05"]
+[ext_resource type="Script" path="res://_common/Math/transformFunctions/SemiImplicitEuler.gd" id="3_hf0df"]
+[ext_resource type="Script" path="res://DialogueSystem/DialogueBubble/SpeechBubble.gd" id="4_xn5pd"]
+[ext_resource type="Texture2D" uid="uid://bopk5mmhunecu" path="res://DialogueSystem/Assets/SpeechBubble.png" id="5_0r2d8"]
+[ext_resource type="PackedScene" uid="uid://dh61a631jg1qr" path="res://DialogueSystem/DialogueBubble/ChoiceButton.tscn" id="6_bwger"]
+
+[sub_resource type="Resource" id="Resource_nrj7d"]
+script = ExtResource("3_hf0df")
+f = 0.472
+z = 0.342
+r = 0.235
+
+[node name="DialogueChoiceBubble" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+script = ExtResource("1_nsxon")
+dialogueJsonPath = ExtResource("2_s7c05")
+SIE = SubResource("Resource_nrj7d")
+
+[node name="SpeechBubbleTail" type="Polygon2D" parent="."]
+unique_name_in_owner = true
+polygon = PackedVector2Array(0, 1, -104.207, -119.266, -94.2071, -119.266)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="DialogueBubble" type="PanelContainer" parent="VBoxContainer" node_paths=PackedStringArray("letterTimer")]
+unique_name_in_owner = true
+physics_interpolation_mode = 1
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+script = ExtResource("4_xn5pd")
+letterTimer = NodePath("LetterTimer")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/DialogueBubble"]
+layout_mode = 2
+texture = ExtResource("5_0r2d8")
+region_rect = Rect2(0.05723, 0.182793, 15.8859, 15.8859)
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/DialogueBubble/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/DialogueBubble/NinePatchRect/CenterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "Test"
+fit_content = true
+autowrap_mode = 0
+
+[node name="LetterTimer" type="Timer" parent="VBoxContainer/DialogueBubble"]
+wait_time = 0.1
+one_shot = true
+
+[node name="ButtonsVBox" type="VBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+alignment = 1
+
+[node name="ChoiceButton" parent="VBoxContainer/ButtonsVBox" instance=ExtResource("6_bwger")]
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+text = "test"
+
+[node name="ChoiceButton2" parent="VBoxContainer/ButtonsVBox" instance=ExtResource("6_bwger")]
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+text = "hello"
+
+[node name="ChoiceButton3" parent="VBoxContainer/ButtonsVBox" instance=ExtResource("6_bwger")]
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+text = "1"
+
+[node name="EzDialogue" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_r2vnx")
+
+[connection signal="custom_signal_received" from="EzDialogue" to="." method="_on_ez_dialogue_custom_signal_received"]
+[connection signal="dialogue_generated" from="EzDialogue" to="." method="_on_ez_dialogue_dialogue_generated"]
+[connection signal="end_of_dialogue_reached" from="EzDialogue" to="." method="_on_ez_dialogue_end_of_dialogue_reached"]

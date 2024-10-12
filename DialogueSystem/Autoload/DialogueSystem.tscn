@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfybpsy7www1"]
+
+[ext_resource type="Script" path="res://DialogueSystem/Autoload/DialogueSystem.gd" id="1_hrru2"]
+[ext_resource type="PackedScene" uid="uid://bqgstc2a7cspw" path="res://DialogueSystem/Autoload/DialogueWindow.tscn" id="2_x23b7"]
+
+[node name="DialogueSystem" type="CanvasLayer"]
+layer = 2
+follow_viewport_enabled = true
+script = ExtResource("1_hrru2")
+
+[node name="DialogueWindow" parent="." instance=ExtResource("2_x23b7")]
+unique_name_in_owner = true
+
+[node name="DialogueLetterTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+process_callback = 0
+one_shot = true
