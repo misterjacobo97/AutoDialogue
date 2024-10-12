@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://addons/autodialogue/DialogueBubble/dialogue_choice_bubble.gd" id="1_nsxon"]
 [ext_resource type="Script" path="res://addons/autodialogue/addons/ez_dialogue/ez_dialogue_node.gd" id="2_r2vnx"]
 [ext_resource type="JSON" path="res://addons/autodialogue/testData.json" id="2_s7c05"]
-[ext_resource type="Script" path="res://_common/Math/transformFunctions/SemiImplicitEuler.gd" id="3_hf0df"]
+[ext_resource type="Script" path="res://addons/autodialogue/_common/Math/transformFunctions/SemiImplicitEuler.gd" id="3_hf0df"]
 [ext_resource type="PackedScene" uid="uid://c23vngwrnd652" path="res://addons/autodialogue/DialogueBubble/DialogueBubble.tscn" id="4_4bpdj"]
 [ext_resource type="PackedScene" uid="uid://dh61a631jg1qr" path="res://addons/autodialogue/DialogueBubble/ChoiceButton.tscn" id="6_bwger"]
 

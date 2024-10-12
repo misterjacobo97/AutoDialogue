@@ -53,6 +53,7 @@ func TriggerDialogueFinished():
 	dialogueActive = false
 	if mainCameraRef:
 		TransitionCamera(mainCameraRef)
+		mainCameraRef = null
 	
 	DialogueFinished.emit()
 
