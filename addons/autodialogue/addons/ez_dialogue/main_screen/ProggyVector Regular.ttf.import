@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://bq1wciuc212we"
-path="res://.godot/imported/ProggyVector Regular.ttf-46a3ac02878e25dd5b270471f05ac50c.fontdata"
+path="res://.godot/imported/ProggyVector Regular.ttf-56f8cd8a6a335d7d4d3f0678be30d6ef.fontdata"
 
 [deps]
 
-source_file="res://addons/ez_dialogue/main_screen/ProggyVector Regular.ttf"
-dest_files=["res://.godot/imported/ProggyVector Regular.ttf-46a3ac02878e25dd5b270471f05ac50c.fontdata"]
+source_file="res://addons/autodialogue/addons/ez_dialogue/main_screen/ProggyVector Regular.ttf"
+dest_files=["res://.godot/imported/ProggyVector Regular.ttf-56f8cd8a6a335d7d4d3f0678be30d6ef.fontdata"]
 
 [params]
 

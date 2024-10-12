@@ -18,7 +18,7 @@ signal working_path_changed(path)
 var selectedDialogueNode: DialogueNode
 var selectedGraphNodes: Array[GraphNode]
 
-@onready var dialogueGraphNodePrefab = preload("res://addons/ez_dialogue/main_screen/dialogue_graph_node.tscn")
+@onready var dialogueGraphNodePrefab = preload("res://addons/autodialogue/addons/ez_dialogue/main_screen/dialogue_graph_node.tscn")
 @onready var last_parse_updated_time = 0
 
 const PARSE_UPDATE_WAIT_TIME_IN_MS = 1000 # check for parse/node graph update every 1s.

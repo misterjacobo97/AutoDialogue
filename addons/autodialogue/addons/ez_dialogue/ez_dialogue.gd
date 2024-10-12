@@ -1,7 +1,7 @@
 @tool
 extends EditorPlugin
 
-const MainPanel = preload("res://addons/ez_dialogue/main_screen/main.tscn")
+const MainPanel = preload("res://addons/autodialogue/addons/ez_dialogue/main_screen/main.tscn")
 const PLUGIN_NAME = "EzDialogue"
 const DIALOGUE_NODE_NAME = "EzDialogue"
 const ICON = preload("icon.png")
